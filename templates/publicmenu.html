@@ -1,0 +1,93 @@
+{% extends "main.html" %}
+{% block content %}
+    {% include 'header.html' %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+<div class="ui raised segment container">
+        <div class="ui message">
+            <ul>
+                {% for message in messages %}
+                    <button type="button" class="ui red  button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> {{ message }}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="ui stacked segment container">
+        <label class="ui top attached large label">
+            {{restaurant.name}}
+        </label>
+        <div class="ui raised segment container">
+            <figure>
+                {% if creator.picture %}
+                    <img class="ui image" src="{{ creator.picture }}">
+                {% else %}
+                    <img class="ui image" src="{{ url_for('static', filename='img/blank_user.gif') }}">
+                {% endif %}
+                <figcaption class="creator-figcaption">{{ creator.name }}</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    {% if items !=[] %}
+       <div class="ui raised segment container">
+                <label class="ui ribbon label">Appetizers</label>
+                {% for i in items %}
+                    {% if i.course == 'Appetizer' %}
+                        <div class="ui stacked segment container">
+                            <label class="top attached label">{{i.name}}</label>
+                            <br>
+                            <hr>
+                                <p>{{i.description}}</p>
+                                <p>{{i.price}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        </div>
+        <div class="ui raised segment container">
+                <label class="ui ribbon label">Entrees</label>
+                {% for i in items %}
+                    {% if i.course == 'Entree' %}
+                         <div class="ui stacked segment container">
+                            <label class="top attached label">{{i.name}}</label>
+                            <br><hr>
+                                <p>{{i.description}}</p>
+                                <p>{{i.price}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        </div>
+        <div class="ui raised segment container">
+                <label class="ui ribbon label">Desserts</label>
+                {% for i in items %}
+                    {% if i.course == 'Dessert' %}
+                         <div class="ui stacked segment container">
+                            <label class="top attached label">{{i.name}}</label>
+                            <br><hr>
+                                <p>{{i.description}}</p>
+                                <p>{{i.price}}</p>
+                            
+                        </div>
+                    {% endif %}
+                {% endfor %}
+      <div class="ui raised segment container">
+                <label class="ui ribbon label">Beverages</label>
+                {% for i in items %}
+                    {% if i.course == 'Beverage' %}
+                <div class="ui stacked segment container">
+                            <label class="top attached label">{{i.name}}</label>
+                            <br><hr>
+                                <p>{{i.description}}</p>
+                                <p>{{i.price}}</p>
+                </div>
+                    {% endif %}
+                {% endfor %}
+       </div>
+</div>
+    {% endif %}
+{% endblock %}

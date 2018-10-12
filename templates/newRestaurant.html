@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<head>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+	<div class="ui raised segment container">
+		<div class="ui top large attached red ribbon label">Add a new Restaurant</div>
+	<div class="ui stacked segment container">
+			<form action="#" method = "post" class="ui form">
+				<div class="field">
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="100" name="name">
+				</div>
+				<button type="submit" class="ui green button" id="submit">Create</button>
+				</div>
+			</form>
+	</div>
+	</div>
+{% endblock %}

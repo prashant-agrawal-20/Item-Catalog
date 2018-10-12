@@ -1,0 +1,22 @@
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+<div class="ui top attached menu">
+	<div class="item">
+		<i class="large home icon"></i>
+			<a href="{{url_for('showRestaurants')}}">
+			Show All restaurants
+			</a>
+	</div>
+	<div class="right menu">
+		{%if 'username' not in session %}
+		<div class="item">
+		<a href="{{url_for('showLogin')}}">Click Here to Login </a>
+		</div>
+		{% else %}
+		<div class="item">
+		<a href="{{url_for('gdisconnect')}}">Logout </a>
+		</div>
+		{% endif %}
+	</div>
+</div>

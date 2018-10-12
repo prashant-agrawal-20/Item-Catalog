@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+<div class="ui large message"> Are you sure you want to delete {{restaurant.name}}? </div>
+
+<form action="#" method = 'post' class="ui form">
+
+	<button type="submit" class="ui primary red button" id="submit" type="submit">Delete</button>
+	<a href = '{{url_for('showRestaurants')}}'>
+		<button class="ui green button">Cancel</button>
+	</a>
+
+</form>
+
+{% endblock %}

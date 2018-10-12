@@ -1,0 +1,55 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+<div class="ui raised segment container">
+	<div class="ui top attached massive label">Edit Menu Item</div>
+	<br><hr>
+	<div class="ui stacked segment container">
+		<form class="ui form" action="#" method = "post">
+			<div class="field">
+				<label for="name">Name:</label>
+				<input type ="text" maxlength="100" name="name" value="{{item.name }}">
+			</div>
+			<div class="field">
+				<label for="description">Description:</label>
+				<textarea maxlength="250" rows="3" name="description">{{item.description}}</textarea>
+			</div>
+			<div class="field">
+				<div class="ui right labeled input">
+				  <label for="amount" class="ui label">$</label>
+  					<input type ="text" maxlength="10" name="price" value="{{item.price}}">
+ 				 <div class="ui basic label">.00</div>
+				</div>
+			</div>
+			<div class="field">
+				<div class="ui radio checkbox">
+			        <input type="radio" name="course" id="course1" value="Appetizer" {% if item.course == 'Appetizer'%}checked{%endif%}>
+			        <label>Appetizer</label>
+			     </div>
+			</div>
+			<div class="field">
+				 <div class="ui radio checkbox">
+			        <input type="radio" name="course" id="course2" value="Entree" {% if item.course == 'Entree' %}checked{%endif%}>
+			        <label>Entree</label>
+			     </div>
+			</div>
+			<div class="field">
+				 <div class="ui radio checkbox">
+			        <input type="radio" name="course" id="course4" value="Beverage" {%if item.course =='Beverage'%}checked{%endif%}>
+			        <label>Beverages</label>
+			     </div>
+			</div>
+		
+			<button class="ui right green floated button" type="submit"  id="submit">
+				Save
+			</button>
+			<a href = '{{url_for('showRestaurants')}}'>
+						<button class="ui right floated red button">
+						Cancel</button>
+			</a>
+		</form>
+	</div>
+</div>	

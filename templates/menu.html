@@ -1,0 +1,106 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+<div class="ui raised segment container">
+	<div class="ui large top attached label">
+		
+				<img class="ui right floated circular image" src="{{ creator.picture }}">
+				{{ restaurant.name }}
+				<p>{{creator.name}}</p>
+	</div>
+	<div class = 'flash'>
+			{% with messages = get_flashed_messages() %}
+	      {% if messages %}
+	          
+	        <ul>
+	        {% for message in messages %}
+	            <li> <strong> {{ message }} </strong> </li>
+	        {% endfor %}
+	        </ul>
+	        {% endif %}
+	    {% endwith %}
+
+	</div>
+	<br><hr>
+		<div class="ui raised segment container">
+			<a href="{{url_for('editRestaurant', restaurant_id = restaurant.id )}}">
+				<button class="ui green button" id="new-menu-item">
+					Edit Restaurant
+				</button>
+			</a>
+			<a href="{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">
+				<button class="ui primary button" id="new-menu-item">
+					Add Menu Item
+				</button>
+			</a>
+			<a href="{{url_for('deleteRestaurant', restaurant_id = restaurant.id )}}">
+				<button class="ui red button" id="delete-restaurant">
+					Delete Restaurant
+				</button>
+			</a>
+		</div>
+	
+	{% if items !=[] %}	
+		<div class="ui raised segment container">
+				<label class="ui red ribbon label">Appetizers</label>
+					{% for i in items %}
+						{% if i.course == 'Appetizer' %}
+							<div class="ui raised segment container">
+								<h3>{{i.name}}</h3>
+								<p>{{i.description}}</p>
+								<p class="menu-price">{{i.price}}</p>
+								<a href='{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Edit</a> | 
+								<a href='{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Delete</a>
+							</div>
+						{% endif %}
+					{% endfor %}
+		</div>
+		<div class="ui raised segment container">
+				<label class="ui red ribbon label">Entrees</label>
+					{% for i in items %}
+						{% if i.course == 'Entree' %}
+						<div class="ui raised segment container">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="menu-price">{{i.price}}</p>
+							<a href='{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Edit</a> | 
+							<a href='{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+		</div>
+		<div class="ui raised segment container">
+			<label class="ui red ribbon label">Desserts</label>
+					{% for i in items %}
+						{% if i.course == 'Dessert' %}
+						<div class="ui raised segment container">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="menu-price">{{i.price}}</p>
+							<a href='{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Edit</a> | 
+							<a href='{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+		</div>
+		<div class="ui raised segment container">
+			<label class="ui red ribbon label">Beverages</label>
+					{% for i in items %}
+						{% if i.course == 'Beverage' %}
+						<div class="ui raised segment container">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="menu-price">{{i.price}}</p>
+							<a href='{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Edit</a> | 
+							<a href='{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}'>Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+		</div>
+</div>
+
+	{% endif %}
+{% endblock %}

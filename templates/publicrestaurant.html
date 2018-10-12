@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block content %}
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.css">
+</head>
+<div class="ui raised segment container">
+	<div class="ui message">
+		<a href="{{url_for('showLogin')}}">Click Here to Log in </a>
+	</div>
+
+	<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+	</div>
+
+	<div class="ui stacked segment container">
+	{% for restaurant in restaurants %}
+		<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}">
+			<div class="ui raised segment container">
+						<h3>{{restaurant.name}}</h3>
+			</div>
+		</a>
+	</div>
+</div>
+	{% endfor %}
+{% endblock %}
